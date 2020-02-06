@@ -104,6 +104,8 @@
     <Content Include="Content\site.css" />
     <Content Include="imagenes\coche.jpg" />
     <Content Include="index.html" />
+    <Content Include="js1.html" />
+    <Content Include="js2.html" />
     <Content Include="pagina2.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
