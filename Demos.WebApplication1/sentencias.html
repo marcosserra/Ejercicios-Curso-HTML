@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demos - Sentencias</title>
+</head>
+<body>
+    <script>
+        var app = {
+            demos: {
+                Contador: function (inicio, fin, salto) {
+                    for (var i = inicio; i < fin + 1; i = i + salto) {
+                        (i != 100) ? document.writeln(i + ' - ') : document.writeln(i);
+
+                        //document.writeln(i);
+                        //if (i != 100) {
+                        //    document.writeln(' - ');
+                        //}
+
+                        //document.writeln(i);
+                        //if (i != 100) document.writeln(' - ');
+                        
+
+                        //if (i != 100) {
+                        //    document.writeln(i + ' - ');
+                        //} else {
+                        //    document.writeln(i);
+                        //}
+
+                        //if (i != 100) document.writeln(i + ' - ');
+                        //else document.writeln(i);
+                    }
+                }
+            }
+        };
+
+        var inicio = parseInt(prompt('Indica el número inicio', 1));
+        var fin = parseInt(prompt('Indica el número fin', 100));
+        var salto = parseInt(prompt('Indica el número de salto', 1));
+        app.demos.Contador(inicio, fin, salto);
+
+        //app.demos.Contador(parseInt(prompt('Indica el número de salto', 1)));
+    </script>
+</body>
+</html>
