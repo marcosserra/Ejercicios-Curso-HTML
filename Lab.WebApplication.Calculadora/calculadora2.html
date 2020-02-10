@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lab Calculadora</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <h1>Calculadora</h1>
+                <hr />
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button class="btn btn-block btn-success">Sumar</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-block btn-primary">Restar</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-block btn-warning">Multiplicar</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-block btn-danger">Dividir</button>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <label>Número 1</label>
+                    <input class="form-control" />
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label>Número 2</label>
+                    <input class="form-control" />
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <h1 class="text-danger">
+                    <b>0,00</b>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <script>
+        function Calcula(o) {
+            var n1 = parseFloat(document.getElementsByTagName('input')[0].value);
+            var n2 = parseFloat(document.getElementsByTagName('input')[1].value);
+            var res = 0;
+
+            switch (o) {
+                case 's':
+                    res = n1 + n2;
+                    break;
+                case 'r':
+                    res = n1 - n2;
+                    break;
+                case 'm':
+                    res = n1 * n2;
+                    break;
+                case 'd':
+                    res = n1 / n2;
+                    break;
+            }
+
+            document.getElementsByTagName('b')[0].innerHTML = res.toFixed(2).replace('.', ',');
+        }
+
+        //Suma
+        document.getElementsByClassName('btn-success')[0].onclick = function () {
+            Calcula('s');
+        }
+
+        //Resta
+        document.getElementsByClassName('btn-primary')[0].onclick = function () {
+            Calcula('r');
+        }
+
+        //Multiplica
+        document.getElementsByClassName('btn-warning')[0].onclick = function () {
+            Calcula('m');
+        }
+
+        //Divide
+        document.getElementsByClassName('btn-danger')[0].onclick = function () {
+            Calcula('d');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demo DOM - Visor de Imagenes</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10 text-center">
+                <h1>Visor de Imagenes</h1>
+                <hr />
+                <img src="" class="img-thumbnail" />
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <input id="i1" class="form-control" />
+                <br />
+                <button id="b1" class="btn btn-success">Cargar</button>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <script>
+        var boton = document.getElementById('b1');
+        boton.innerHTML = 'Load ...';
+
+        boton.onclick = function () {
+            var i1 = document.getElementsByTagName('input')[0];
+            var imagen = document.getElementsByClassName('img-thumbnail')[0];
+            imagen.src = i1.value;
+            i1.value = '';
+        };
+
+    </script>
+</body>
+</html>
