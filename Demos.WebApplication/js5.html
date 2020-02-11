@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demos</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <input id="i1" class="form-control" />
+                <br />
+            </div>
+        </div>
+        <button class="btn btn-outline-danger" id="b1">Ejecutar JS</button>
+        <button class="btn btn-outline-success" id="b2">Ejecutar JS</button>
+    </div>
+    <script>
+        var columna = document.getElementsByClassName('col-12')[0];
+        var columna2 = document.getElementsByClassName('col-12')[1];
+
+        document.getElementById('b1').onclick = function () {
+            columna.innerHTML = '<h1 class="text-danger">Hola Mundo !!!</h1>';
+            columna.innerHTML += '<hr />';
+        };
+
+        document.getElementById('b2').onclick = function () {
+            funciones.analizar1();
+        };
+
+        var funciones = {
+            pintar1: function () {
+                //Pintar del 1 al 100 de 5 en 5 en la columna2
+                for (var c1 = 1; c1 < 101; c1 = c1 + 5) {
+                    columna2.innerHTML += '<p class="text-danger">' + c1 + '</p>';
+                }
+            },
+            pintar2: function () {
+                //Pintar del 1 al 100 de 5 en 5 en la columna2 con un WHILE
+                var c1 = 1;
+                while (c1 < 101) {
+                    columna2.innerHTML += '<p class="text-danger">' + c1 + '</p>';
+                    c1 += 5;
+                }
+            },
+            analizar1: function() {
+                //Analizamos el valor de i1 y mostramos en columna2 par o impar
+
+            }
+        };
+    </script>
+</body>
+</html>
