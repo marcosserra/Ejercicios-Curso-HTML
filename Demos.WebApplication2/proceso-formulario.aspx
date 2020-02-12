@@ -18,7 +18,7 @@
                 <hr />
                 <h3><b>Resultado:</b> <%=Mensaje%></h3>
                 <br />
-                <p><b>Nombre Completo:</b> <%=Nombre%> <%=Apellido1 %></p>
+                <p><b>Nombre Completo:</b> <%=Nombre%> <%=Apellido1%> <%=Apellido2%></p>
             </div>
             <div class="col"></div>
         </div>

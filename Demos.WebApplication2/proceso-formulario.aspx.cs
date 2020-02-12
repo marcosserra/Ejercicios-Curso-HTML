@@ -16,17 +16,8 @@ namespace Demos.WebApplication2
         public string Email = "";
         public string Mensaje = "";
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Request GET
-            //Nombre = HttpContext.Current.Request.QueryString["nombre"];
-            //Nombre = HttpContext.Current.Request.QueryString[0];
-
-            //Request POST
-            //Nombre = HttpContext.Current.Request.Form["nombre"];
-            //Nombre = HttpContext.Current.Request.Form[0];
-
             //Request GET y POST
             try
             {
@@ -42,7 +33,17 @@ namespace Demos.WebApplication2
             {
                 Mensaje = "Error: " + ex.Message;
             }
-
         }
     }
 }
+
+
+
+
+//Request GET
+//Nombre = HttpContext.Current.Request.QueryString["nombre"];
+//Nombre = HttpContext.Current.Request.QueryString[0];
+
+//Request POST
+//Nombre = HttpContext.Current.Request.Form["nombre"];
+//Nombre = HttpContext.Current.Request.Form[0];

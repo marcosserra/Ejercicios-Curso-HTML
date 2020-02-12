@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Conexión Remota</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <h1>Consulta Ciudades</h1>
+                <hr />
+                <input class="form-control" />
+                <br />
+                <button id="b1" class="btn btn-block btn-primary">Consultar</button>
+            </div>
+            <div class="col"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-8 text-center"> </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+    <script>
+        //DEMO Conexión Remota con un Microservicio / APIRest
+
+        document.getElementById('b1').onclick = function () {
+            //Crear un objeto XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+
+            //Configurar el objeto XMLHttpRequest para la conexión remota
+            var cp = document.getElementsByTagName('input')[0].value;
+            var datos = 'es/' + cp;
+            var url = 'https://api.zippopotam.us/' + datos;
+            xhr.open('get', url, true);
+
+            //Opcionalmente añadimos información al HEAD
+            xhr.setRequestHeader('Content-Type', 'text/plain');
+
+            //Capturar el evento onReadyStateChange que se produce cuando cambia el estado de la conexión
+            xhr.onreadystatechange = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var respuesta = JSON.parse(xhr.responseText);
+                        document.getElementsByClassName('col-8')[0].innerHTML =
+                            '<h1><b>Ciudad:</b> ' + respuesta.places[0]['place name'] + '</h1>';
+
+                        document.getElementsByClassName('col-8')[0].innerHTML +=
+                            '<h1><b>Poblacion:</b> ' + respuesta.places[0].state + '</h1>';
+                    } else {
+                        document.getElementsByClassName('col-8')[0].innerHTML =
+                            'Error: ' + xhr.status + ', ' + xhr.statusText;
+                    }
+                } else {
+                    //Podemos ir mostrando el estado de la conexión
+                }
+            };
+
+            //Iniciamos la conexión
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
