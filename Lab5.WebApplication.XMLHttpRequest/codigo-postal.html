@@ -28,43 +28,59 @@
 
     </div>
     <script>
-        //DEMO Conexión Remota con un Microservicio / APIRest
+        var app = {
+            Core: {
+                Ciudad: ''
+            },
+            Process: {
+                ConsultaCiudad: function () {
+                    var xhr = new XMLHttpRequest();
+                    var cp = document.getElementsByTagName('input')[0].value;
+                    var datos = 'es/' + cp;
+                    var url = 'https://api.zippopotam.us/' + datos;
 
-        document.getElementById('b1').onclick = function () {
-            //Crear un objeto XMLHttpRequest
-            var xhr = new XMLHttpRequest();
+                    xhr.open('get', url, false);
+                    xhr.setRequestHeader('Content-Type', 'text/plain');
+                    xhr.send();
 
-            //Configurar el objeto XMLHttpRequest para la conexión remota
-            var cp = document.getElementsByTagName('input')[0].value;
-            var datos = 'es/' + cp;
-            var url = 'https://api.zippopotam.us/' + datos;
-            xhr.open('get', url, true);
-
-            //Opcionalmente añadimos información al HEAD
-            xhr.setRequestHeader('Content-Type', 'text/plain');
-
-            //Capturar el evento onReadyStateChange que se produce cuando cambia el estado de la conexión
-            xhr.onreadystatechange = function (e) {
-                if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var respuesta = JSON.parse(xhr.responseText);
-                        document.getElementsByClassName('col-8')[0].innerHTML =
-                            '<h1><b>Ciudad:</b> ' + respuesta.places[0]['place name'] + '</h1>';
+                        app.Core.Ciudad = respuesta.places[0]['place name'];
+                        document.getElementsByClassName('col-8')[0].innerHTML = '<h1><b>Ciudad:</b> ' + app.Core.Ciudad + '</h1>';
 
-                        document.getElementsByClassName('col-8')[0].innerHTML +=
-                            '<h1><b>Poblacion:</b> ' + respuesta.places[0].state + '</h1>';
-                    } else {
-                        document.getElementsByClassName('col-8')[0].innerHTML =
-                            'Error: ' + xhr.status + ', ' + xhr.statusText;
-                    }
-                } else {
-                    //Podemos ir mostrando el estado de la conexión
+                        //Recuperar la Temperatura
+                        app.Process.ConsultaTemperatura();
+
+                    } else alert('Uffff');
+                },
+                ConsultaTemperatura: function () {
+                    var xhr = new XMLHttpRequest();
+                    var datos = 'q=' + app.Core.Ciudad + '&units=metric&appid=613279dbd38c117661cc13b5317a5c44';
+                    var url = 'https://api.openweathermap.org/data/2.5/weather?' + datos;
+
+                    xhr.open('post', url, true);
+                    xhr.setRequestHeader('Content-Type', 'text/plain');                   
+                    xhr.onreadystatechange = function (e) {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                var respuesta = JSON.parse(xhr.responseText);
+                                document.getElementsByClassName('col-8')[0].innerHTML +=
+                                    '<h1><b>Temperatura:</b> ' + respuesta.main.temp + '</h1>';
+
+                                document.getElementsByClassName('col-8')[0].innerHTML +=
+                                    '<h1><b>Humedad:</b> ' + respuesta.main.humidity + '%</h1>';
+                            } else alert('Uffff');
+                        }
+                    };
+                    xhr.send();
                 }
-            };
+            },
+            Init: function () {
+                document.getElementById('b1').onclick = app.Process.ConsultaCiudad;
+            }
+        };
 
-            //Iniciamos la conexión
-            xhr.send();
-        }
+        app.Init();
     </script>
 </body>
 </html>
